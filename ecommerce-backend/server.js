@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 require('dotenv').config();
 
-const serverless = require('serverless-http');
+const serverless = require('serverless-http');  
 const orderRoutes = require('./routes/orderRoutes');
 
 const app = express();
@@ -15,9 +15,8 @@ app.use('/api/orders', orderRoutes);
 let isConnected = false;
 
 const connectToDatabase = async () => {
-  if (isConnected) {
-    return;
-  }
+  if (isConnected) return;
+
   try {
     await mongoose.connect(process.env.MONGO_URI);
     isConnected = true;
@@ -28,7 +27,7 @@ const connectToDatabase = async () => {
   }
 };
 
-module.exports.handler = async (req, res) => {
+module.exports.handler = serverless(async (req, res) => {
   await connectToDatabase();
   return app(req, res);
-};
+});

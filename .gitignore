@@ -5,7 +5,3 @@ ecommerce-ui/node_modules/
 # Ignore .env files in both backend and frontend
 ecommerce-backend/.env
 ecommerce-ui/.env
-
-# Optional: Ignore any other OS or editor files (e.g., VSCode settings)
-.vscode/
-.DS_Store
